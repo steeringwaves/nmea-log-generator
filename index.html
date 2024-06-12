@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <!-- Title -->
+    <title>NMEA Log Generator</title>
+
+    <!-- Templates core CSS -->
+    <link href="stylesheets/application.css" rel="stylesheet">
+    <link href="stylesheets/alertify.core.css" rel="stylesheet">
+    <link href="stylesheets/alertify.default.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Modernizr Scripts -->
+    <script src="javascript/vendor/jquery-1.7.2.js"></script>
+    <script src="javascript/vendor/modernizr-2.7.1.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
+	<script src="javascript/assets/alertify.js"></script>
+	
+	<script src="leaflet/leaflet-src.js"></script>
+	<link rel="stylesheet" href="leaflet/leaflet.css"/>
+
+	<script src="leaflet.draw/Leaflet.draw.js"></script>
+	<script src="leaflet.draw/Leaflet.Draw.Event.js"></script>
+	<link rel="stylesheet" href="leaflet.draw/leaflet.draw.css"/>
+
+	<script src="leaflet.draw/Toolbar.js"></script>
+	<script src="leaflet.draw/Tooltip.js"></script>
+
+	<script src="leaflet.draw/ext/GeometryUtil.js"></script>
+	<script src="leaflet.draw/ext/LatLngUtil.js"></script>
+	<script src="leaflet.draw/ext/LineUtil.Intersect.js"></script>
+	<script src="leaflet.draw/ext/Polygon.Intersect.js"></script>
+	<script src="leaflet.draw/ext/Polyline.Intersect.js"></script>
+	<script src="leaflet.draw/ext/TouchEvents.js"></script>
+
+	<script src="leaflet.draw/draw/DrawToolbar.js"></script>
+	<script src="leaflet.draw/draw/handler/Draw.Feature.js"></script>
+	<script src="leaflet.draw/draw/handler/Draw.SimpleShape.js"></script>
+	<script src="leaflet.draw/draw/handler/Draw.Polyline.js"></script>
+	<script src="leaflet.draw/draw/handler/Draw.Marker.js"></script>
+	<script src="leaflet.draw/draw/handler/Draw.Circle.js"></script>
+	<script src="leaflet.draw/draw/handler/Draw.CircleMarker.js"></script>
+	<script src="leaflet.draw/draw/handler/Draw.Polygon.js"></script>
+	<script src="leaflet.draw/draw/handler/Draw.Rectangle.js"></script>
+
+
+	<script src="leaflet.draw/edit/EditToolbar.js"></script>
+	<script src="leaflet.draw/edit/handler/EditToolbar.Edit.js"></script>
+	<script src="leaflet.draw/edit/handler/EditToolbar.Delete.js"></script>
+
+	<script src="leaflet.draw/Control.Draw.js"></script>
+
+	<script src="leaflet.draw/edit/handler/Edit.Poly.js"></script>
+	<script src="leaflet.draw/edit/handler/Edit.SimpleShape.js"></script>
+	<script src="leaflet.draw/edit/handler/Edit.Rectangle.js"></script>
+	<script src="leaflet.draw/edit/handler/Edit.Marker.js"></script>
+	<script src="leaflet.draw/edit/handler/Edit.CircleMarker.js"></script>
+	<script src="leaflet.draw/edit/handler/Edit.Circle.js"></script>
+	
+	<link rel="stylesheet" href="leaflet.easybutton/easy-button.css"/>
+	<script src="leaflet.easybutton/easy-button.js"></script>
+	
+	<link rel="stylesheet" href="ionicons-2.0.1/css/ionicons.min.css"/>
+	
+	<script src="javascript/assets/common.js"></script>
+    <script src="javascript/assets/application.js"></script>
+	
+  </head>
+  <body class="sign-in-up" id="to-top">
+
+    <!-- Sign In/Sign Up section -->
+    <section class="sign-in-up-section">
+      <div class="container">
+        <section class="sign-in-up-content">
+          <div class="row">
+            <div class="col-md-12">
+              <form>
+                <div class="form-group">
+					<div id="map" style="width: 100%; height: 600px; border: 1px solid #ccc"></div>
+                </div> <!-- /.form-group -->
+                
+                <div class="form-group">
+					Altitude (m): <input class="form-control" id="Altitude" type="text" value="0" onchange='WriteSettings();'></input>
+					Speed (km/h): <input class="form-control" id="Speed" type="text" value="10" onchange='WriteSettings();'></input>
+					<div class="checkbox">
+						<label><input type="checkbox" id="ReverseEnabled" checked onchange='WriteSettings();'>Loop Log (run start-to-end-to-start)</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" id="HeadingEnabled" checked onchange='WriteSettings();'>Insert Heading (HEHDT)</label>
+					</div>
+                </div> <!-- /.form-group -->
+                
+              </form> <!-- /.sign-in-up-form -->
+            </div> <!-- /.col-md-12 -->
+          </div> <!-- /.row -->
+        </section> <!-- /.sign-in-up-content -->
+
+      </div> <!-- /.container -->
+    </section> <!-- /.sign-in-up-section -->
+
+  </body>
+</html>
